@@ -32,7 +32,7 @@ typedef enum {
 #define ENCODER_INPUT_A(NUM) NUM == (ENC_RIGHT) ? CHA_ENCODER_1R : CHA_ENCODER_1L
 #define ENCODER_INPUT_B(NUM) NUM == (ENC_RIGHT) ? CHA_ENCODER_2R : CHA_ENCODER_2L
 
-pcnt_unit_handle_t selected_encoder = NULL; // A unidade (o contador em si)
+extern pcnt_unit_handle_t selected_encoder; // A unidade (o contador em si) // extern pq se nn ele define outra vez qnd eu chamar o arquivo ddnv?
 
 
 

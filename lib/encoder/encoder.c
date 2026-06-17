@@ -10,14 +10,13 @@ void init_encoder(){
         .high_limit = PCNT_HIGH_LIMIT,
         .low_limit = PCNT_LOW_LIMIT,
     };
-    pcnt_unit_handle_t pcnt_unit = NULL;
-    ESP_ERROR_CHECK(pcnt_new_unit(&unit_config, &pcnt_unit));
+    ESP_ERROR_CHECK(pcnt_new_unit(&unit_config, &selected_encoder));
 
     //Definição do filtro em nanosegundos
     pcnt_glitch_filter_config_t filter_config = {
         .max_glitch_ns = 1000,
     };
-    ESP_ERROR_CHECK(pcnt_unit_set_glitch_filter(pcnt_unit, &filter_config));//Configuração filtro
+    ESP_ERROR_CHECK(pcnt_unit_set_glitch_filter(selected_encoder, &filter_config));//Configuração filtro
 
     //Definição da configuração do canal a do encoder
     pcnt_chan_config_t chan_a_config = {
@@ -25,7 +24,6 @@ void init_encoder(){
         .level_gpio_num = ENCODER_INPUT_B(CHA_ENCODER_2L), //Pino do canal b do encoder
     };
 
-    pcnt_channel_handle_t pcnt_chan_a = NULL;
     //Configuração do canal
     ESP_ERROR_CHECK(pcnt_new_channel(selected_encoder, &chan_a_config, &pcnt_chan_a));
 
@@ -36,7 +34,6 @@ void init_encoder(){
     };
 
     //Configuração do canal
-    pcnt_channel_handle_t pcnt_chan_b = NULL;
     ESP_ERROR_CHECK(pcnt_new_channel(selected_encoder, &chan_b_config, &pcnt_chan_b));
 
     //O unico parâmetro que controlamos é o pcnt_chan_a e pctn_chan_b definidos acima
@@ -45,7 +42,6 @@ void init_encoder(){
 
     //Faz o processo para os canais a e b do encoder
     ESP_ERROR_CHECK(pcnt_channel_set_level_action(pcnt_chan_a, PCNT_CHANNEL_LEVEL_ACTION_KEEP, PCNT_CHANNEL_LEVEL_ACTION_INVERSE));
-    ESP_ERROR_CHECK(pcnt_channel_set_level_action(pcnt_chan_a, PCNT_CHANNEL_LEVEL_ACTION_KEEP, PCNT_CHANNEL_LEVEL_ACTION_INVERSE));
+    ESP_ERROR_CHECK(pcnt_channel_set_level_action(pcnt_chan_b, PCNT_CHANNEL_LEVEL_ACTION_KEEP, PCNT_CHANNEL_LEVEL_ACTION_INVERSE));
 
-    ESP_ERROR_CHECK(pcnt_unit_enable(selected_encoder)); // inicializa o encoder
 }

@@ -2,6 +2,11 @@
 #include "driver/gpio.h"
 #include "driver/ledc.h"
 #include "esp_log.h"
+#include "esp_sleep.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+
+#include "driver/pulse_cnt.h"
 
 typedef enum { // agrupa os motores 
     LEFT,
@@ -47,6 +52,8 @@ typedef enum { // agrupa os motores
 void init_gpio();
 
 void init_pwm();
+
+esp_err_t update_motor();
 
 esp_err_t _set_forward(motor_side_t motor);
 

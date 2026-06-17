@@ -1,4 +1,4 @@
-#include "h_bridge.h"
+#include "motor.h"
 
 void init_gpio()
 {

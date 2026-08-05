@@ -28,11 +28,12 @@ typedef enum {
 #define CHA_ENCODER_2L 0
 
 
-/* Macro functions */
+/* Macro functions */ //redireciona para os pinos com=nforme o motor q esta sendo tratado
 #define ENCODER_INPUT_A(NUM) NUM == (ENC_RIGHT) ? CHA_ENCODER_1R : CHA_ENCODER_1L
 #define ENCODER_INPUT_B(NUM) NUM == (ENC_RIGHT) ? CHA_ENCODER_2R : CHA_ENCODER_2L
 
-extern pcnt_unit_handle_t selected_encoder; // A unidade (o contador em si) // extern pq se nn ele define outra vez qnd eu chamar o arquivo ddnv?
+extern pcnt_unit_handle_t selected_encoder_L; // A unidade (o contador em si) // extern pq se nn ele define outra vez qnd eu chamar o arquivo ddnv?
+extern pcnt_unit_handle_t selected_encoder_R; // A unidade (o contador em si) // extern pq se nn ele define outra vez qnd eu chamar o arquivo ddnv?
 
 
 

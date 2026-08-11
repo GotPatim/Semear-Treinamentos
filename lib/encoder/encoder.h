@@ -30,7 +30,6 @@ typedef enum {
 #define CHA_ENCODER_1L 0
 #define CHA_ENCODER_2L 0
 
-
 /* Macro functions */ //redireciona para os pinos com=nforme o motor q esta sendo tratado
 #define ENCODER_INPUT_A(NUM) NUM == (ENC_RIGHT) ? CHA_ENCODER_1R : CHA_ENCODER_1L
 #define ENCODER_INPUT_B(NUM) NUM == (ENC_RIGHT) ? CHA_ENCODER_2R : CHA_ENCODER_2L

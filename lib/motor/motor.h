@@ -1,5 +1,5 @@
 #ifndef motor.h
-#define mottor.h
+#define motor.h
 
 #include "esp_err.h"
 #include "driver/gpio.h"

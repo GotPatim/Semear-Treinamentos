@@ -3,7 +3,7 @@
 pcnt_unit_handle_t selected_encoder_L;
 pcnt_unit_handle_t selected_encoder_R;
 
-//static const char *TAG = "ENCODER";
+static const char *TAG = "ENCODER";
 
 pcnt_unit_handle_t init_encoder(encoder_side_t side){ 
     pcnt_unit_handle_t side_handler = NULL;

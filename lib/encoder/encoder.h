@@ -1,3 +1,6 @@
+#ifndef encoder.h
+#define encoder
+
 #include "esp_err.h"
 #include "driver/gpio.h"
 #include "driver/ledc.h"
@@ -16,8 +19,8 @@ typedef enum {
 } encoder_side_t;
 
 //PCNT limites
-#define PCNT_HIGH_LIMIT 1500
-#define PCNT_LOW_LIMIT  -1500
+#define PCNT_HIGH_LIMIT 10000
+#define PCNT_LOW_LIMIT  -10000
 
 //Portas encoders motor 1
 #define CHA_ENCODER_1R 0
@@ -38,3 +41,5 @@ extern pcnt_unit_handle_t selected_encoder_R; // A unidade (o contador em si) //
 
 
 void init_encoder();
+
+#endif

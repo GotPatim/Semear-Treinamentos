@@ -3,11 +3,17 @@
 pcnt_unit_handle_t selected_encoder_L;
 pcnt_unit_handle_t selected_encoder_R;
 
+static const char *TAG = "ENCODER";
+
 void init_encoder(){
     selected_encoder_L = NULL; // A unidade (o contador em si)
     selected_encoder_R = NULL; // A unidade (o contador em si)
-    pcnt_channel_handle_t pcnt_chan_a_L = NULL, pcnt_chan_b_L = NULL;
-    pcnt_channel_handle_t pcnt_chan_a_R = NULL, pcnt_chan_b_R = NULL;
+
+    pcnt_channel_handle_t pcnt_chan_a_L = NULL;
+    pcnt_channel_handle_t pcnt_chan_b_L = NULL;
+    pcnt_channel_handle_t pcnt_chan_a_R = NULL;
+    pcnt_channel_handle_t pcnt_chan_b_R = NULL;
+
     //Definição da configuração da unidade com os limites máximos e mínimos de contagem dos encoders
     pcnt_unit_config_t unit_config = {
         .high_limit = PCNT_HIGH_LIMIT,
@@ -52,16 +58,26 @@ void init_encoder(){
     ESP_ERROR_CHECK(pcnt_new_channel(selected_encoder_L, &chan_b_config_L, &pcnt_chan_b_L));
     ESP_ERROR_CHECK(pcnt_new_channel(selected_encoder_R, &chan_b_config_R, &pcnt_chan_b_R));
 
-    //Faz o processo para os canais a dos encoders
+    //configura as açoes do encoder esquerdo
     ESP_ERROR_CHECK(pcnt_channel_set_edge_action(pcnt_chan_a_L, PCNT_CHANNEL_EDGE_ACTION_DECREASE, PCNT_CHANNEL_EDGE_ACTION_INCREASE));
     ESP_ERROR_CHECK(pcnt_channel_set_level_action(pcnt_chan_a_L, PCNT_CHANNEL_LEVEL_ACTION_KEEP, PCNT_CHANNEL_LEVEL_ACTION_INVERSE));
+    
+    ESP_ERROR_CHECK(pcnt_channel_set_edge_action(pcnt_chan_b_L, PCNT_CHANNEL_EDGE_ACTION_INCREASE, PCNT_CHANNEL_EDGE_ACTION_DECREASE));
+    ESP_ERROR_CHECK(pcnt_channel_set_level_action(pcnt_chan_b_L, PCNT_CHANNEL_LEVEL_ACTION_KEEP, PCNT_CHANNEL_LEVEL_ACTION_INVERSE));
+    
+    //configura as acoes do encoder direito
     ESP_ERROR_CHECK(pcnt_channel_set_edge_action(pcnt_chan_a_R, PCNT_CHANNEL_EDGE_ACTION_INCREASE, PCNT_CHANNEL_EDGE_ACTION_DECREASE));
     ESP_ERROR_CHECK(pcnt_channel_set_level_action(pcnt_chan_a_R, PCNT_CHANNEL_LEVEL_ACTION_KEEP, PCNT_CHANNEL_LEVEL_ACTION_INVERSE));
 
-    //Faz o processo para os canais b dos encoders
-    ESP_ERROR_CHECK(pcnt_channel_set_edge_action(pcnt_chan_b_L, PCNT_CHANNEL_EDGE_ACTION_INCREASE, PCNT_CHANNEL_EDGE_ACTION_DECREASE));
-    ESP_ERROR_CHECK(pcnt_channel_set_level_action(pcnt_chan_b_L, PCNT_CHANNEL_LEVEL_ACTION_KEEP, PCNT_CHANNEL_LEVEL_ACTION_INVERSE));
     ESP_ERROR_CHECK(pcnt_channel_set_edge_action(pcnt_chan_b_R, PCNT_CHANNEL_EDGE_ACTION_DECREASE, PCNT_CHANNEL_EDGE_ACTION_INCREASE));
     ESP_ERROR_CHECK(pcnt_channel_set_level_action(pcnt_chan_b_R, PCNT_CHANNEL_LEVEL_ACTION_KEEP, PCNT_CHANNEL_LEVEL_ACTION_INVERSE));
 
+    //Inicia o hardware PCNT
+    ESP_ERROR_CHECK(pcnt_unit_enable(selected_encoder_L)); 
+    ESP_ERROR_CHECK(pcnt_unit_clear_count(selected_encoder_L)); 
+    ESP_ERROR_CHECK(pcnt_unit_start(selected_encoder_L));
+
+    ESP_ERROR_CHECK(pcnt_unit_enable(selected_encoder_R)); 
+    ESP_ERROR_CHECK(pcnt_unit_clear_count(selected_encoder_R)); 
+    ESP_ERROR_CHECK(pcnt_unit_start(selected_encoder_R));
 }

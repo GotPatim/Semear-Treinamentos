@@ -12,10 +12,6 @@ void init_gpio()
     gpio_set_direction(INPUT_RIGHT_2, GPIO_MODE_OUTPUT);
     gpio_set_direction(LEDC_OUTPUT_RIGHT, GPIO_MODE_OUTPUT);
     
-    // Definir GPIOs como saída para os controles do motor esquerdo e direito.
-    // Alunos devem inserir os números dos pinos corretos para cada função.
-
-    // Código removido para inserção pelos alunos
 }
 
 void init_pwm()
@@ -52,11 +48,16 @@ void init_pwm()
         .hpoint = 0
     };
     ledc_channel_config(&ledc_right_channel); // efetiva a mudança
-    // Código removido para inserção pelos alunos
 }
 
 esp_err_t update_motor(motor_side_t motor, int u)
 {
+    if(u > 1023){
+        u = 1023;
+    } else if(u < -1023){
+        u = -1023;
+    }
+
     if(u > 0){ // pra frente
         _set_forward(motor);
     } else {
@@ -65,9 +66,6 @@ esp_err_t update_motor(motor_side_t motor, int u)
     u = abs(u);
     ledc_set_duty(LEDC_MODE, MOTOR_CHANNEL(motor), u); // define  o sentido q o motor deve tomar e a intensidade(u)
     ledc_update_duty(LEDC_MODE, MOTOR_CHANNEL(motor)); // da "upload" nas definiçoes feitas
-
-    
-    // Código removido para inserção pelos alunos
 
     return ESP_OK;
 }

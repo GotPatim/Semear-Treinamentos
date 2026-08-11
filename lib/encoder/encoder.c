@@ -3,7 +3,7 @@
 pcnt_unit_handle_t selected_encoder_L;
 pcnt_unit_handle_t selected_encoder_R;
 
-static const char *TAG = "ENCODER";
+//static const char *TAG = "ENCODER";
 
 pcnt_unit_handle_t init_encoder(encoder_side_t side){ 
     pcnt_unit_handle_t side_handler = NULL;
@@ -56,6 +56,7 @@ pcnt_unit_handle_t init_encoder(encoder_side_t side){
     ESP_ERROR_CHECK(pcnt_unit_clear_count(side_handler)); 
     ESP_ERROR_CHECK(pcnt_unit_start(side_handler));
 
+    return side_handler;
 }
 
 int get_encoder_vel(pcnt_unit_handle_t handler){ 

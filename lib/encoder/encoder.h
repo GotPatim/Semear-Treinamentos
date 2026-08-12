@@ -22,8 +22,8 @@ typedef enum {
 #define PCNT_LOW_LIMIT  -10000
 
 //Portas encoders motor 1
-#define CHA_ENCODER_1R 18
-#define CHA_ENCODER_2R 19
+#define CHA_ENCODER_1R 4
+#define CHA_ENCODER_2R 16
 
 //Portas encoders motor 2
 #define CHA_ENCODER_1L 2

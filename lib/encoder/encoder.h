@@ -1,5 +1,4 @@
 #ifndef encoder.h
-#define encoder
 
 #include "esp_err.h"
 #include "driver/gpio.h"
@@ -38,8 +37,9 @@ typedef enum {
 extern pcnt_unit_handle_t selected_encoder_L; // A unidade (o contador em si) // extern pq se nn ele define outra vez qnd eu chamar o arquivo ddnv?
 extern pcnt_unit_handle_t selected_encoder_R; // A unidade (o contador em si) // extern pq se nn ele define outra vez qnd eu chamar o arquivo ddnv?
 
+int get_encoder_vel(pcnt_unit_handle_t handler); 
+int get_encoder_position(pcnt_unit_handle_t handler);
 
-
-void init_encoder();
+pcnt_unit_handle_t init_encoder(encoder_side_t side);
 
 #endif

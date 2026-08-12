@@ -1,5 +1,4 @@
 #ifndef motor.h
-#define mottor.h
 
 #include "esp_err.h"
 #include "driver/gpio.h"
@@ -22,15 +21,15 @@ typedef enum { // agrupa os motores
 
 // GPIOs of h-bridge for left motor
 // pinos q mandam pro motor se vai pra frente ou pra tras
-#define INPUT_LEFT_1   GPIO_NUM_14
-#define INPUT_LEFT_2   GPIO_NUM_13
-#define LEDC_OUTPUT_LEFT   GPIO_NUM_18 // define o pino q controla vel do motor
+#define INPUT_LEFT_1   GPIO_NUM_25
+#define INPUT_LEFT_2   GPIO_NUM_33
+#define LEDC_OUTPUT_LEFT   GPIO_NUM_32 // define o pino q controla vel do motor
 
 // GPIOs of h-bridge for right motor
 // pinos q mandam pro motor se vai pra frente ou pra tras
-#define INPUT_RIGHT_1   GPIO_NUM_15
-#define INPUT_RIGHT_2   GPIO_NUM_16
-#define LEDC_OUTPUT_RIGHT   GPIO_NUM_17 // define o pino q controla vel do motor
+#define INPUT_RIGHT_1   GPIO_NUM_27
+#define INPUT_RIGHT_2   GPIO_NUM_14
+#define LEDC_OUTPUT_RIGHT   GPIO_NUM_13 // define o pino q controla vel do motor
 
 
 

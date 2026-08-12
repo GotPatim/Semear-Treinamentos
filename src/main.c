@@ -4,26 +4,23 @@
 
     void app_main(void)
     {
-        int pulse_count_L, pulse_count_R;
-        int vel_final = 400;//de 0-1023, pois é o duty
-        int vel_R = vel_final, vel_L = vel_final;
         init_gpio();
         init_pwm();
-        init_encoder();
+
+        pcnt_unit_handle_t encoder_left = init_encoder(ENC_LEFT);
+        pcnt_unit_handle_t encoder_right = init_encoder(ENC_RIGHT);
         
         //motor da esquerda
-        update_motor(LEFT, vel_L );
+        update_motor(LEFT, 400);
         // motor da direita
-        update_motor(RIGHT, vel_R);
+        update_motor(RIGHT, 400);
         
         while(1){
+            vTaskDelay(pdMS_TO_TICKS(100)); 
+            int left_tick = get_encoder_vel(encoder_left);
+            int right_tick = get_encoder_vel(encoder_right);
+
+            printf("Ticks-> L: %d | R: %d\n", left_tick, right_tick);
             vTaskDelay(pdMS_TO_TICKS(5000));
-            pcnt_unit_get_count(selected_encoder_L, &pulse_count_L);
-            pcnt_unit_get_count(selected_encoder_R, &pulse_count_R);
-
-            printf("Ticks-> L: %d | R: %d\n", pulse_count_L, pulse_count_R);
         }
-
-        
-
     }

@@ -1,5 +1,4 @@
 #ifndef encoder.h
-#define encoder
 
 #include "esp_err.h"
 #include "driver/gpio.h"
@@ -23,12 +22,12 @@ typedef enum {
 #define PCNT_LOW_LIMIT  -10000
 
 //Portas encoders motor 1
-#define CHA_ENCODER_1R 0
-#define CHA_ENCODER_2R 0
+#define CHA_ENCODER_1R 4
+#define CHA_ENCODER_2R 16
 
 //Portas encoders motor 2
-#define CHA_ENCODER_1L 0
-#define CHA_ENCODER_2L 0
+#define CHA_ENCODER_1L 2
+#define CHA_ENCODER_2L 15
 
 /* Macro functions */ //redireciona para os pinos com=nforme o motor q esta sendo tratado
 #define ENCODER_INPUT_A(NUM) NUM == (ENC_RIGHT) ? CHA_ENCODER_1R : CHA_ENCODER_1L

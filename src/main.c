@@ -17,13 +17,12 @@
         update_motor(RIGHT, vel_R);
         
         while(1){
-            vTaskDelay(pdMS_TO_TICKS(100)); 
+            vTaskDelay(pdMS_TO_TICKS(5000));
             pcnt_unit_get_count(selected_encoder_L, &pulse_count_L);
             pcnt_unit_get_count(selected_encoder_R, &pulse_count_R);
 
             printf("Ticks-> L: %d | R: %d\n", pulse_count_L, pulse_count_R);
         }
-        vTaskDelay(pdMS_TO_TICKS(5000));
 
         
 

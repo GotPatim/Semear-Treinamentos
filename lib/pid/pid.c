@@ -35,9 +35,15 @@ esp_err_t pid_calculate(pid_ctrl_block_handle_t pid, motor_side_t motor, float t
 
     ESP_ERROR_CHECK(pid_compute(pid, error, &value));
 
-    *inc_value = +value; 
+    *inc_value += value; 
 
     update_motor(motor, *inc_value);
+
+    if (motor == LEFT_MOTOR) {
+        printf(">velocidades:left=%.2f\n", vel);
+    } else {
+        printf(">velocidades:right=%.2f\n", vel);
+    }
 
     return ESP_OK;
 }

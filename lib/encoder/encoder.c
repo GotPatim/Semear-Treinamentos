@@ -59,7 +59,7 @@ pcnt_unit_handle_t init_encoder(encoder_side_t side){
     return side_handler;
 }
 
-int get_encoder_vel(pcnt_unit_handle_t handler){ 
+int get_encoder_ticks(pcnt_unit_handle_t handler){ 
     int count = 0;
 
     ESP_ERROR_CHECK(pcnt_unit_get_count(handler, &count)); 

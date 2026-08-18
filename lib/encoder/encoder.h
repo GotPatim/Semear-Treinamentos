@@ -1,4 +1,5 @@
-#ifndef encoder.h
+#ifndef ENCODER_H
+#define ENCODER_H
 
 #include "esp_err.h"
 #include "driver/gpio.h"
@@ -13,8 +14,8 @@
 
 /* Enum */
 typedef enum {
-    ENC_LEFT = 0,
-    ENC_RIGHT = 1
+    LEFT_ENC = 0,
+    RIGHT_ENC = 1
 } encoder_side_t;
 
 //PCNT limites
@@ -31,13 +32,13 @@ typedef enum {
 
 
 /* Macro functions */ //redireciona para os pinos com=nforme o motor q esta sendo tratado
-#define ENCODER_INPUT_A(NUM) NUM == (ENC_RIGHT) ? CHA_ENCODER_1R : CHA_ENCODER_1L
-#define ENCODER_INPUT_B(NUM) NUM == (ENC_RIGHT) ? CHA_ENCODER_2R : CHA_ENCODER_2L
+#define ENCODER_INPUT_A(NUM) NUM == (RIGHT_ENC) ? CHA_ENCODER_1R : CHA_ENCODER_1L
+#define ENCODER_INPUT_B(NUM) NUM == (RIGHT_ENC) ? CHA_ENCODER_2R : CHA_ENCODER_2L
 
 extern pcnt_unit_handle_t selected_encoder_L; // A unidade (o contador em si) // extern pq se nn ele define outra vez qnd eu chamar o arquivo ddnv?
 extern pcnt_unit_handle_t selected_encoder_R; // A unidade (o contador em si) // extern pq se nn ele define outra vez qnd eu chamar o arquivo ddnv?
 
-int get_encoder_vel(pcnt_unit_handle_t handler); 
+int get_encoder_ticks(pcnt_unit_handle_t handler); 
 int get_encoder_position(pcnt_unit_handle_t handler);
 
 pcnt_unit_handle_t init_encoder(encoder_side_t side);

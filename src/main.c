@@ -1,26 +1,25 @@
-    #include <stdio.h>
-    #include "motor.h"
-    #include "encoder.h"
+#include <stdio.h>
+#include "motor.h"
+#include "encoder.h"
+#include "pid.h"
 
-    void app_main(void)
-    {
-        init_gpio();
-        init_pwm();
 
-        pcnt_unit_handle_t encoder_left = init_encoder(ENC_LEFT);
-        pcnt_unit_handle_t encoder_right = init_encoder(ENC_RIGHT);
-        
-        //motor da esquerda
-        update_motor(LEFT, 400);
-        // motor da direita
-        update_motor(RIGHT, 400);
-        
-        while(1){
-            vTaskDelay(pdMS_TO_TICKS(100)); 
-            int left_tick = get_encoder_vel(encoder_left);
-            int right_tick = get_encoder_vel(encoder_right);
+void app_main(void)
+{
+    init_gpio();
+    init_pwm();
+    pid_ctrl_block_handle_t pid_left = init_pid(LEFT_MOTOR);
+    pid_ctrl_block_handle_t pid_right = init_pid(RIGHT_MOTOR);
 
-            printf("Ticks-> L: %d | R: %d\n", left_tick, right_tick);
-            vTaskDelay(pdMS_TO_TICKS(5000));
-        }
+    pcnt_unit_handle_t encoder_left = init_encoder(LEFT_ENC);
+    pcnt_unit_handle_t encoder_right = init_encoder(RIGHT_ENC);
+    
+    float target_vel = 3;
+    float inc_value = 0.0f;
+
+    while(1){
+        vTaskDelay(pdMS_TO_TICKS(100)); // 0,1s
+        pid_calculate(pid_left, LEFT_MOTOR, target_vel, &inc_value, encoder_left);
+        pid_calculate(pid_right, RIGHT_MOTOR, target_vel, &inc_value, encoder_right);
     }
+}

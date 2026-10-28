@@ -21,6 +21,6 @@
             int right_tick = get_encoder_vel(encoder_right);
 
             printf("Ticks-> L: %d | R: %d\n", left_tick, right_tick);
-            vTaskDelay(pdMS_TO_TICKS(5000));
+            //vTaskDelay(pdMS_TO_TICKS(5000));
         }
     }

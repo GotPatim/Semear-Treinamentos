@@ -22,12 +22,12 @@ typedef enum {
 #define PCNT_LOW_LIMIT  -10000
 
 //Portas encoders motor 1
-#define CHA_ENCODER_1R 4
+#define CHA_ENCODER_1R 17
 #define CHA_ENCODER_2R 16
 
 //Portas encoders motor 2
-#define CHA_ENCODER_1L 2
-#define CHA_ENCODER_2L 15
+#define CHA_ENCODER_1L 18
+#define CHA_ENCODER_2L 19
 
 
 /* Macro functions */ //redireciona para os pinos com=nforme o motor q esta sendo tratado

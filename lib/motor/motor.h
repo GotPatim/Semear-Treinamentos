@@ -27,6 +27,7 @@ typedef enum { // agrupa os motores
 #define LEDC_DUTY_RES   LEDC_TIMER_10_BIT   // 0–1023, 10 bits, valor de 0 - 100% q o motor funciona
 #define LEDC_FREQUENCY  5000                 // Hz, dita a frequencia q o duty muda
 
+
 /* Macro functions */
 #define MOTOR_INPUT_1(MOTOR) MOTOR == (LEFT) ? INPUT_LEFT_1 : INPUT_RIGHT_1 // peg um pino de output pro motor e abre a chave da direita ou da esquerda (da ponte h)
 #define MOTOR_INPUT_2(MOTOR) MOTOR == (LEFT) ? INPUT_LEFT_2 : INPUT_RIGHT_2 // abre o pino oposto pra fazer o fluxo, esse fluxo define se vai pra frente ou pra tras

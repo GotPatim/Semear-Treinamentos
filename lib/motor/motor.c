@@ -2,6 +2,10 @@
 
 void init_gpio()
 {
+    
+    gpio_set_direction(STAND_BY, GPIO_MODE_OUTPUT);
+    gpio_set_level(STAND_BY, HIGH);
+
     // Motor 1:
     gpio_set_direction(INPUT_LEFT_1, GPIO_MODE_OUTPUT);
     gpio_set_direction(INPUT_LEFT_2, GPIO_MODE_OUTPUT);

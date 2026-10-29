@@ -29,7 +29,8 @@
 #define CHA_ENCODER_1L 18
 #define CHA_ENCODER_2L 19
 
+#define STAND_BY GPIO_NUM_25
 
 
 
-// --------------- Ricardo --------------- 
+// --------------- Bruno --------------- 
